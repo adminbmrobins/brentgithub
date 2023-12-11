@@ -8,22 +8,25 @@ on:
     branches:
       - main
 env:
-  USER1: Brent
+  USER1: Brent1
 jobs:
   build:
      env:
-       USER2_job: Brent2
+       USER2: Brent2
+       USER1: Brent1_job
      runs-on: ubuntu-latest
      steps:
        - name: Checkout
          uses: actions/checkout@v4.1.1
        - name: step 2
          env:
-           user3_step: Brent3
+           user3: ajit
+           USER1: Brent1_step
          run: |
           ls -l
           echo "github repo name is ${{ GITHUB.REPOSITORY }} and branch name is ${{ GITHUB.REF_NAME }} "
-          echo "Value for variable user1, user2 and user3 are $USER1 $USER2_job $user3_step"
+          echo "Value for variable user1, user2 and user3 are $USER1 $USER2 $user3"
+          echo " Value for user1 and servername are ${{ vars.user1 }} and ${{ vars.server_name }}"
           pwd
           java -version
        - run: echo " Print value of user 3 $user3"
